@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import store from './store'
 // require styles
 import 'swiper/dist/css/swiper.css'
 import './assets/styles/reset.css'
@@ -17,6 +18,7 @@ fastClick.attach(document.body) // 解决移动端点击事件延迟问题
 new Vue({
   el: '#app',
   router,
+  store: store,
   components: { App },
   template: '<App/>'
 })

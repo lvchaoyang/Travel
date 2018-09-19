@@ -5,8 +5,11 @@
     </div>
     <div class="search-content" ref="search" v-show="keyword">
       <ul>
-        <li class="search-item border-bottom" v-for="(item, i) in list" :key="i">
-          {{item}}
+        <li class="search-item border-bottom"
+            v-for="(item, i) in list"
+            :key="i"
+            @click="handCityClick(item.name)">
+          {{item.name}}
         </li>
         <li class="search-item border-bottom" v-show="hasNoData">
           没有找到匹配数据
@@ -18,6 +21,7 @@
 
 <script>
 import Bscroll from 'better-scroll'
+import {mapMutations} from 'vuex'
 export default {
   name: 'CitySearch',
   props: {
@@ -29,6 +33,13 @@ export default {
       list: [],
       timer: null
     }
+  },
+  methods: {
+    handCityClick (city) {
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
   },
   computed: {
     hasNoData () {
@@ -49,7 +60,7 @@ export default {
         for (let i in this.cities) {
           this.cities[i].forEach((value) => {
             if (value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1) {
-              result.push(value.name)
+              result.push(value)
             }
           })
         }
