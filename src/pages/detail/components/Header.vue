@@ -72,6 +72,7 @@ export default {
     font-size: .32rem;
     color: #ffffff;
     background: #00bcd4;
+    z-index: 2;
   }
   .header-fixed-back {
     position: absolute;
