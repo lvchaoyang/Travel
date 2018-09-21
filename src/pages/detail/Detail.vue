@@ -26,6 +26,7 @@ export default {
   },
   data () {
     return {
+      id: '',
       sightName: '',
       bannerImg: '',
       galleryImg: [],
@@ -52,13 +53,17 @@ export default {
     }
   },
   mounted () {
+    this.id = this.$route.params.id
+    this.getDetailInfo()
+  },
+  activated () {
+    if (this.id !== this.$route.params.id) {
+      this.id = this.$route.params.id
+    }
     this.getDetailInfo()
   }
 }
 </script>
 
 <style scoped>
-  .content {
-    height: 50rem;
-  }
 </style>
